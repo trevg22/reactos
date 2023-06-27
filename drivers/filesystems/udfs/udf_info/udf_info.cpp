@@ -4593,6 +4593,7 @@ __declspec(naked)
         mov   esi,ecx
         mov   ecx,edx
         xor   eax,eax
+        mov eax, [esp + 5 * 4] // get Crc variable
 
         jecxz EO_CRC
 
@@ -4616,7 +4617,7 @@ EO_CRC:
         pop   ecx
         pop   ebx
 
-        ret
+        ret 4
     }
 #else  // NO X86 optimization , use generic C/C++
     while (Size--)
